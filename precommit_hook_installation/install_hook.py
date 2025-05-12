@@ -22,15 +22,19 @@ exit 0
 """
 
 def main():
-    git_hooks_dir = os.path.join(os.getcwd(), ".git", "hooks")
+    # Locate the .git/hooks directory in the target repository
+    current_dir = os.getcwd()
+    git_hooks_dir = os.path.join(current_dir, ".git", "hooks")
     pre_commit_path = os.path.join(git_hooks_dir, "pre-commit")
 
     if not os.path.exists(git_hooks_dir):
         print("Error: .git/hooks directory not found. Are you in a Git repository?")
         return
 
+    # Write the pre-commit hook script
     with open(pre_commit_path, "w") as hook_file:
         hook_file.write(PRE_COMMIT_HOOK)
 
+    # Make the pre-commit hook executable
     os.chmod(pre_commit_path, 0o755)
-    print("Pre-commit hook installed successfully.")
+    print("Pre-commit hook installed successfully in the target repository.")

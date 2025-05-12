@@ -1,3 +1,1 @@
-
-snyk
-talisman
+# (Empty file or add other dependencies if needed)
